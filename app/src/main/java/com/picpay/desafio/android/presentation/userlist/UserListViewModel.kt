@@ -1,9 +1,9 @@
-package com.picpay.desafio.android
+package com.picpay.desafio.android.presentation.userlist
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.picpay.desafio.android.data.UsersRepository
 import com.picpay.desafio.android.model.User
 import kotlinx.coroutines.launch
 
