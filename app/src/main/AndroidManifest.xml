@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         android:name=".PicPayApplication">
-        <activity android:name=".presentation.MainActivity">
+        <activity android:name=".presentation.MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
