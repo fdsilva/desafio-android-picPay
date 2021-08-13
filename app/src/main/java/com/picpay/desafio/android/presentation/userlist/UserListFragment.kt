@@ -1,13 +1,18 @@
 package com.picpay.desafio.android.presentation.userlist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.desafio.android.databinding.ActivityMainBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserListFragment : Fragment() {
@@ -30,14 +35,15 @@ class UserListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
         setupObservables()
-        viewModel.getUserList()
+            //viewModel.getUserList()
     }
 
     private fun setupObservables() {
         with(viewModel) {
-            userList.observe(viewLifecycleOwner, Observer {
-                adapter.users = it
-            })
+            lifecycleScope.launch {
+                getUserList().collectLatest {
+                    adapter.submitData(it) }
+                }
         }
     }
 
