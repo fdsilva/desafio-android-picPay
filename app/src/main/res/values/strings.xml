@@ -2,5 +2,9 @@
     <string name="app_name">PicPay</string>
     <string name="title">Contatos</string>
     <string name="error">Ocorreu um erro. Tente novamente.</string>
+    <string name="retry">Retry</string>
+    <string name="retry_message">Ops, algo deu errado :( \npressione o botão para tentar novamente</string>
+    <string name="empty_list_message">Algo deu errado, pressione o botão para tentar novamente</string>
+    <string name="oops">Ooops!</string>
 
 </resources>

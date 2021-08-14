@@ -5,11 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.desafio.android.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.empty_list_layout.view.*
+import kotlinx.android.synthetic.main.loading_retry_layout.*
+import kotlinx.android.synthetic.main.loading_retry_layout.view.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -35,7 +40,13 @@ class UserListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
         setupObservables()
-            //viewModel.getUserList()
+        setupClickListeners()
+    }
+
+    private fun setupClickListeners() {
+        binding.emptyListLayout.btnRetryEmpty.setOnClickListener {
+            adapter.retry()
+        }
     }
 
     private fun setupObservables() {
@@ -49,8 +60,16 @@ class UserListFragment : Fragment() {
 
     private fun setupViews() {
         with(binding) {
-            recyclerView.adapter = adapter
+            recyclerView.adapter = adapter.withLoadStateFooter(
+                UserListLoadStateAdapter { adapter.retry() }
+            )
             recyclerView.layoutManager = LinearLayoutManager(context)
+            adapter.addLoadStateListener {
+                emptyListLayout.isVisible = it.source.refresh is LoadState.Error && adapter.itemCount == 0
+
+                recyclerView.isVisible = it.source.refresh is LoadState.NotLoading
+                binding.progressBar.isVisible = it.source.refresh is LoadState.Loading
+            }
         }
     }
 
