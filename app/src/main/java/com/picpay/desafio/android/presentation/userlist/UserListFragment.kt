@@ -65,9 +65,8 @@ class UserListFragment : Fragment() {
             )
             recyclerView.layoutManager = LinearLayoutManager(context)
             adapter.addLoadStateListener {
-                emptyListLayout.isVisible = it.refresh is LoadState.Error && adapter.itemCount == 0
-
-                recyclerView.isVisible = it.refresh is LoadState.NotLoading
+                emptyListLayout.isVisible = it.mediator?.refresh is LoadState.Error && adapter.itemCount == 0
+                recyclerView.isVisible = it.refresh is LoadState.NotLoading || adapter.itemCount > 0
                 binding.progressBar.isVisible = it.refresh is LoadState.Loading
             }
         }

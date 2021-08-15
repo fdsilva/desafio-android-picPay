@@ -9,7 +9,7 @@ import com.picpay.desafio.android.data.db.UserDataBase
 import com.picpay.desafio.android.model.User
 import kotlinx.coroutines.flow.Flow
 
-private const val PAGE_SIZE = 5
+private const val PAGE_SIZE = 10
 
 class UsersRepository(
     private val userDataBase: UserDataBase,

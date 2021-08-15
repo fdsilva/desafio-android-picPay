@@ -1,6 +1,5 @@
 package com.picpay.desafio.android.data
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -44,8 +43,6 @@ class UserRemoteMediator(
             }
         }
 
-        Log.d("DEBUG-TAG", "<> PAGE $page")
-
         return try {
             val response = service.getUsers(page = page)
             val users = response.body()
@@ -62,7 +59,6 @@ class UserRemoteMediator(
                     RemoteKeys(userId = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
                 userDataBase.remoteKeysDao().insertAll(keys)
-                Log.d("DEBUG-TAG", "<--> PAGE $users  \n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
                 userDataBase.usersDao().insertAll(users)
             }
             return endOfPaginationReached?.let { MediatorResult.Success(endOfPaginationReached = it) }!!
