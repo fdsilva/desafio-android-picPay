@@ -12,7 +12,6 @@ class UserListPagingDataSource(
 ) : PagingSource<Int, User>() {
 
     override fun getRefreshKey(state: PagingState<Int, User>): Int? {
-        Log.d("DEBUG-TAG", "<<<<< CU >>>>>")
         return state.anchorPosition?.let {
             state.closestPageToPosition(anchorPosition = it)?.prevKey?.plus(INITIAL_PAGE)
                 ?: state.closestPageToPosition(anchorPosition = it)?.nextKey?.minus(INITIAL_PAGE)
@@ -22,8 +21,6 @@ class UserListPagingDataSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, User> {
         return try {
             val page = params.key ?: 1
-            Log.d("DEBUG-TAG", "- PAGE ${page} >>>>>")
-            //Log.d("DEBUG-TAG", "<<<<< ${params.loadSize}>>>>>")
             val response = picPayService.getUsers(page = page)
 
             response.body()?.let {
