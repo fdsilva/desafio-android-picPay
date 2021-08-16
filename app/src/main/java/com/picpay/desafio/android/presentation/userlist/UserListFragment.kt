@@ -1,21 +1,16 @@
 package com.picpay.desafio.android.presentation.userlist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.desafio.android.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.empty_list_layout.view.*
-import kotlinx.android.synthetic.main.loading_retry_layout.*
-import kotlinx.android.synthetic.main.loading_retry_layout.view.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

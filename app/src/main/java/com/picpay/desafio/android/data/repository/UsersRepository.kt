@@ -1,13 +1,11 @@
-package com.picpay.desafio.android.data
+package com.picpay.desafio.android.data.repository
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import com.picpay.desafio.android.data.PicPayService
+import com.picpay.desafio.android.data.service.PicPayService
 import com.picpay.desafio.android.data.db.UserDataBase
-import com.picpay.desafio.android.model.User
-import kotlinx.coroutines.flow.Flow
+import com.picpay.desafio.android.data.sources.UserRemoteMediator
 
 private const val PAGE_SIZE = 10
 

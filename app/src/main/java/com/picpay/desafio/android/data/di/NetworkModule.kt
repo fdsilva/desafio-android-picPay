@@ -1,14 +1,12 @@
-package com.picpay.desafio.android
+package com.picpay.desafio.android.data.di
 
 import com.google.gson.GsonBuilder
-import com.picpay.desafio.android.data.PicPayService
+import com.picpay.desafio.android.data.service.PicPayService
+import com.picpay.desafio.android.utils.url
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-//TODO remove to const file or to gradle
-private const val url = "https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/"
 
 val networkModule = module {
     single { provideRetrofit() }

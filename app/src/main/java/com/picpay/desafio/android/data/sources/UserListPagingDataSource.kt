@@ -1,8 +1,8 @@
-package com.picpay.desafio.android.data
+package com.picpay.desafio.android.data.sources
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.picpay.desafio.android.data.service.PicPayService
 import com.picpay.desafio.android.model.User
 
 private const val INITIAL_PAGE = 1

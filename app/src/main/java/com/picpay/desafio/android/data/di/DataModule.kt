@@ -1,6 +1,7 @@
-package com.picpay.desafio.android.data
+package com.picpay.desafio.android.data.di
 
 import com.picpay.desafio.android.data.db.UserDataBase
+import com.picpay.desafio.android.data.repository.UsersRepository
 import org.koin.dsl.module
 
 val dataModule = module {

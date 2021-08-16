@@ -1,10 +1,9 @@
-package com.picpay.desafio.android.data
+package com.picpay.desafio.android.data.service
 
 import com.picpay.desafio.android.model.User
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
-
 
 interface PicPayService {
 

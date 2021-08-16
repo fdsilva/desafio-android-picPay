@@ -1,10 +1,11 @@
-package com.picpay.desafio.android.data
+package com.picpay.desafio.android.data.sources
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.picpay.desafio.android.data.service.PicPayService
 import com.picpay.desafio.android.data.db.UserDataBase
 import com.picpay.desafio.android.model.RemoteKeys
 import com.picpay.desafio.android.model.User
@@ -72,14 +73,14 @@ class UserRemoteMediator(
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, User>): RemoteKeys? {
         return state.pages.lastOrNull() { it.data.isNotEmpty() }?.data?.lastOrNull()
             ?.let { user ->
-                userDataBase.remoteKeysDao().remoteKeysRepoId(user.id)
+                userDataBase.remoteKeysDao().remoteKeysUserId(user.id)
             }
     }
 
     private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, User>): RemoteKeys? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
             ?.let { user ->
-                userDataBase.remoteKeysDao().remoteKeysRepoId(user.id)
+                userDataBase.remoteKeysDao().remoteKeysUserId(user.id)
             }
     }
 
@@ -88,9 +89,8 @@ class UserRemoteMediator(
     ): RemoteKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { userId ->
-                userDataBase.remoteKeysDao().remoteKeysRepoId(userId)
+                userDataBase.remoteKeysDao().remoteKeysUserId(userId)
             }
         }
     }
-
 }

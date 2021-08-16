@@ -29,7 +29,9 @@ abstract class UserDataBase : RoomDatabase() {
 
        private fun buildDatabase(context: Context) =
            Room.databaseBuilder(context.applicationContext,
-               UserDataBase::class.java, "PicPay.db")
+               UserDataBase::class.java, DATABASE_NAME)
                .build()
    }
 }
+
+private const val DATABASE_NAME = "PicPay.db"
